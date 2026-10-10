@@ -1,0 +1,4 @@
+{
+    "cmake.sourceDirectory": "C:/Users/Vishwas/Desktop/Projects/STM32F411-SMBus-Adaptor/middleware/RTOS/include",
+    "C_Cpp.default.compilerPath": "c:\\msys64\\ucrt64\\bin\\g++.exe"
+}
