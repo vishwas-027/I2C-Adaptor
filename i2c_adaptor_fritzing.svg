@@ -1,0 +1,556 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="fritzing-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1360 760" width="100%" height="100%" style="background-color: #f8fafc;">
+        <defs>
+          <!-- Subtle Drop Shadow for PCB Modules -->
+          <filter id="pcb-shadow" x="-8%" y="-8%" width="116%" height="118%">
+            <feDropShadow dx="0" dy="5" stdDeviation="5" flood-color="#0f172a" flood-opacity="0.22"/>
+          </filter>
+          <filter id="wire-shadow" x="-5%" y="-5%" width="110%" height="110%">
+            <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#0f172a" flood-opacity="0.28"/>
+          </filter>
+
+          <!-- Background Engineering Grid Pattern for Exported SVG -->
+          <pattern id="grid-small" width="20" height="20" patternUnits="userSpaceOnUse">
+            <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#e2e8f0" stroke-width="1"/>
+          </pattern>
+          <pattern id="grid-large" width="100" height="100" patternUnits="userSpaceOnUse">
+            <rect width="100" height="100" fill="url(#grid-small)"/>
+            <path d="M 100 0 L 0 0 0 100" fill="none" stroke="#cbd5e1" stroke-width="1.2"/>
+          </pattern>
+
+          <!-- Gold Pin Header Pad -->
+          <g id="pin-pad">
+            <rect x="-4.5" y="-4.5" width="9" height="9" rx="1.5" fill="#eab308" stroke="#a16207" stroke-width="1"/>
+            <circle cx="0" cy="0" r="2.2" fill="#1e293b"/>
+          </g>
+
+          <!-- Perfboard Copper Ring -->
+          <g id="perf-hole">
+            <circle cx="0" cy="0" r="4.2" fill="#b45309" opacity="0.75"/>
+            <circle cx="0" cy="0" r="2" fill="#451a03"/>
+          </g>
+        </defs>
+
+        <!-- Grid Background -->
+        <rect width="1360" height="760" fill="url(#grid-large)"/>
+
+        <!-- Top Title Banner -->
+        <g transform="translate(680, 36)" text-anchor="middle" font-family="Arial, Helvetica, sans-serif">
+          <rect x="-410" y="-24" width="820" height="44" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1.5"/>
+          <text x="0" y="3" fill="#f8fafc" font-size="16" font-weight="bold" letter-spacing="0.6">
+            STM32F103 BLUE PILL &amp; STM32F411 BLACK PILL — I2C + UART + SWD CIRCUIT DIAGRAM
+          </text>
+        </g>
+
+        <!-- ============================================================== -->
+        <!-- 1. LEFT EXTREME: USB TYPE-C ST-LINK V2 DEBUGGER                -->
+        <!-- ============================================================== -->
+        <g id="module-left-stlink" transform="translate(80, 230)" filter="url(#pcb-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Module Label Box -->
+          <rect x="-10" y="-58" width="160" height="42" rx="6" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+          <text x="70" y="-39" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="bold">1. Left ST-Link V2</text>
+          <text x="70" y="-23" text-anchor="middle" fill="#475569" font-size="10">(USB Type-C + Console)</text>
+
+          <!-- Blue/Teal ST-Link PCB -->
+          <rect x="0" y="0" width="140" height="250" rx="6" fill="#0f4c81" stroke="#082f49" stroke-width="2"/>
+          <!-- Mounting Details -->
+          <rect x="12" y="8" width="116" height="38" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+          <text x="70" y="58" text-anchor="middle" fill="#bae6fd" font-size="10" font-weight="bold">SWD 2x5 HEADER</text>
+
+          <!-- SWD Pins on Top Header (3.3V, SWDIO, SWCLK, GND) -->
+          <!-- Coordinates relative to Left ST-Link (80, 230):
+               GND:   x=32, y=22  -> Global (112, 252)
+               SWCLK: x=56, y=22  -> Global (136, 252)
+               SWDIO: x=80, y=22  -> Global (160, 252)
+               3.3V:  x=104, y=22 -> Global (184, 252) -->
+          <use href="#pin-pad" x="32" y="22"/>
+          <use href="#pin-pad" x="56" y="22"/>
+          <use href="#pin-pad" x="80" y="22"/>
+          <use href="#pin-pad" x="104" y="22"/>
+          <text x="32" y="42" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">GND</text>
+          <text x="56" y="42" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">CLK</text>
+          <text x="80" y="42" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">DIO</text>
+          <text x="104" y="42" text-anchor="middle" fill="#fde047" font-size="8" font-weight="bold">3V3</text>
+
+          <!-- Main Controller IC -->
+          <rect x="42" y="88" width="56" height="56" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+          <text x="70" y="114" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="bold">STM32</text>
+          <text x="70" y="126" text-anchor="middle" fill="#94a3b8" font-size="8">ST-LINK</text>
+
+          <!-- Side UART Console Header (RX / TX) -->
+          <!-- RX Pin: x=126, y=165 -> Global (206, 395)
+               TX Pin: x=126, y=190 -> Global (206, 420) -->
+          <rect x="116" y="152" width="18" height="52" rx="2" fill="#1e293b"/>
+          <use href="#pin-pad" x="125" y="165"/>
+          <use href="#pin-pad" x="125" y="190"/>
+          <text x="110" y="168" text-anchor="end" fill="#fef08a" font-size="10" font-weight="bold">RX</text>
+          <text x="110" y="193" text-anchor="end" fill="#fed7aa" font-size="10" font-weight="bold">TX</text>
+
+          <!-- Status LEDs -->
+          <circle cx="26" cy="175" r="4" fill="#ef4444"/>
+          <circle cx="26" cy="192" r="4" fill="#3b82f6"/>
+          <text x="36" y="178" fill="#cbd5e1" font-size="8">PWR</text>
+          <text x="36" y="195" fill="#cbd5e1" font-size="8">COM</text>
+
+          <!-- Bottom USB Type-C Connector (Matches Left ST-Link Orientation in Photo) -->
+          <rect x="43" y="220" width="54" height="38" rx="6" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+          <text x="70" y="242" text-anchor="middle" fill="#1e293b" font-size="9" font-weight="bold">USB-C</text>
+          <!-- Braided USB Cable Stub -->
+          <path d="M 70 258 L 70 320" stroke="#a8a29e" stroke-width="10" stroke-linecap="round"/>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- 4. LEFT-CENTER: STM32F103C8T6 BLUE PILL                        -->
+        <!-- ============================================================== -->
+        <g id="module-blue-pill" transform="translate(330, 170)" filter="url(#pcb-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Module Label Box -->
+          <rect x="-10" y="-58" width="190" height="42" rx="6" fill="#eff6ff" stroke="#2563eb" stroke-width="1.5"/>
+          <text x="85" y="-39" text-anchor="middle" fill="#1e3a8a" font-size="12" font-weight="bold">4. STM32F103C8T6</text>
+          <text x="85" y="-23" text-anchor="middle" fill="#1d4ed8" font-size="10">Blue Pill (Left MCU)</text>
+
+          <!-- Blue Pill PCB -->
+          <rect x="0" y="0" width="170" height="360" rx="6" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="2.5"/>
+
+          <!-- Yellow Header Strips (Left & Right) -->
+          <rect x="6" y="36" width="18" height="304" rx="2" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+          <rect x="146" y="36" width="18" height="304" rx="2" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+
+          <!-- Top SWD 4-Pin Header (Matches Photo: Top Header on Blue Pill) -->
+          <!-- Coordinates relative to Blue Pill (330, 170):
+               GND:   x=55,  y=14 -> Global (385, 184)
+               SWCLK: x=75,  y=14 -> Global (405, 184)
+               SWDIO: x=95,  y=14 -> Global (425, 184)
+               3.3V:  x=115, y=14 -> Global (445, 184) -->
+          <rect x="43" y="5" width="84" height="18" rx="2" fill="#1e293b"/>
+          <use href="#pin-pad" x="55" y="14"/>
+          <use href="#pin-pad" x="75" y="14"/>
+          <use href="#pin-pad" x="95" y="14"/>
+          <use href="#pin-pad" x="115" y="14"/>
+          <text x="55" y="34" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="bold">GND</text>
+          <text x="75" y="34" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="bold">CLK</text>
+          <text x="95" y="34" text-anchor="middle" fill="#e2e8f0" font-size="8" font-weight="bold">DIO</text>
+          <text x="115" y="34" text-anchor="middle" fill="#fde047" font-size="8" font-weight="bold">3V3</text>
+
+          <!-- 8MHz Silver Crystal & Reset Button -->
+          <rect x="58" y="65" width="54" height="20" rx="10" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+          <text x="85" y="78" text-anchor="middle" fill="#334155" font-size="8" font-weight="bold">8.000 MHz</text>
+
+          <!-- Angled STM32F103 LQFP48 IC -->
+          <g transform="translate(85, 155) rotate(45)">
+            <rect x="-32" y="-32" width="64" height="64" rx="3" fill="#1e293b" stroke="#94a3b8" stroke-width="1.5"/>
+            <circle cx="-22" cy="-22" r="3" fill="#64748b"/>
+            <text x="0" y="-4" text-anchor="middle" fill="#f8fafc" font-size="9" font-weight="bold">STM32</text>
+            <text x="0" y="9" text-anchor="middle" fill="#38bdf8" font-size="8" font-weight="bold">F103C8T6</text>
+          </g>
+
+          <!-- Yellow BOOT0 / BOOT1 Jumpers -->
+          <rect x="58" y="235" width="36" height="10" rx="2" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+          <rect x="58" y="250" width="36" height="10" rx="2" fill="#facc15" stroke="#a16207" stroke-width="1"/>
+          <text x="85" y="274" text-anchor="middle" fill="#bfdbfe" font-size="8">BOOT0 / 1</text>
+
+          <!-- Reset Tactile Button -->
+          <rect x="68" y="290" width="34" height="26" rx="3" fill="#cbd5e1" stroke="#475569" stroke-width="1"/>
+          <circle cx="85" cy="303" r="8" fill="#eab308"/>
+
+          <!-- Bottom Micro-USB Connector -->
+          <rect x="63" y="338" width="44" height="24" rx="3" fill="#cbd5e1" stroke="#64748b" stroke-width="1.5"/>
+
+          <!-- LEFT HEADER PINS (PA2, PA3, GND) -->
+          <!-- Coordinates relative to Blue Pill (330, 170):
+               PA2 (TX): x=15, y=150 -> Global (345, 320)
+               PA3 (RX): x=15, y=180 -> Global (345, 350)
+               GND:      x=15, y=315 -> Global (345, 485) -->
+          <use href="#pin-pad" x="15" y="60"/>
+          <use href="#pin-pad" x="15" y="90"/>
+          <use href="#pin-pad" x="15" y="120"/>
+          <use href="#pin-pad" x="15" y="150"/>
+          <use href="#pin-pad" x="15" y="180"/>
+          <use href="#pin-pad" x="15" y="210"/>
+          <use href="#pin-pad" x="15" y="240"/>
+          <use href="#pin-pad" x="15" y="270"/>
+          <use href="#pin-pad" x="15" y="315"/>
+
+          <text x="29" y="154" fill="#fef08a" font-size="11" font-weight="bold">A2 (TX)</text>
+          <text x="29" y="184" fill="#fed7aa" font-size="11" font-weight="bold">A3 (RX)</text>
+          <text x="29" y="319" fill="#f8fafc" font-size="11" font-weight="bold">GND</text>
+
+          <!-- RIGHT HEADER PINS (3.3V, PB8, PB9) -->
+          <!-- Coordinates relative to Blue Pill (330, 170):
+               3.3V:      x=155, y=60  -> Global (485, 230)
+               PB8 (SCL): x=155, y=150 -> Global (485, 320)
+               PB9 (SDA): x=155, y=180 -> Global (485, 350) -->
+          <use href="#pin-pad" x="155" y="60"/>
+          <use href="#pin-pad" x="155" y="90"/>
+          <use href="#pin-pad" x="155" y="120"/>
+          <use href="#pin-pad" x="155" y="150"/>
+          <use href="#pin-pad" x="155" y="180"/>
+          <use href="#pin-pad" x="155" y="210"/>
+          <use href="#pin-pad" x="155" y="240"/>
+          <use href="#pin-pad" x="155" y="270"/>
+          <use href="#pin-pad" x="155" y="315"/>
+
+          <text x="141" y="64" text-anchor="end" fill="#fecaca" font-size="11" font-weight="bold">3.3V</text>
+          <text x="141" y="154" text-anchor="end" fill="#86efac" font-size="11" font-weight="bold">B8 (SCL)</text>
+          <text x="141" y="184" text-anchor="end" fill="#e9d5ff" font-size="11" font-weight="bold">B9 (SDA)</text>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- 3. MIDDLE: PERFBOARD WITH I2C PULL-UP RESISTORS                -->
+        <!-- ============================================================== -->
+        <g id="module-pullup-board" transform="translate(595, 250)" filter="url(#pcb-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Module Label Box -->
+          <rect x="-10" y="-58" width="190" height="42" rx="6" fill="#fffbeb" stroke="#d97706" stroke-width="1.5"/>
+          <text x="85" y="-39" text-anchor="middle" fill="#78350f" font-size="12" font-weight="bold">3. I2C Pull-Up Perfboard</text>
+          <text x="85" y="-23" text-anchor="middle" fill="#92400e" font-size="10">Dual 4.7 kΩ Resistors to 3.3V</text>
+
+          <!-- Phenolic Brown Perfboard -->
+          <rect x="0" y="0" width="170" height="190" rx="4" fill="#c27838" stroke="#7c2d12" stroke-width="2"/>
+
+          <!-- Perfboard Grid Holes -->
+          <!-- Row 1: 3.3V Pull-up Common Rail (y=30) -->
+          <use href="#perf-hole" x="25" y="30"/>
+          <use href="#perf-hole" x="60" y="30"/>
+          <use href="#perf-hole" x="110" y="30"/>
+          <use href="#perf-hole" x="145" y="30"/>
+
+          <!-- Row 2: Decorative Unused Perf Holes (y=65, y=100) -->
+          <use href="#perf-hole" x="25" y="65"/>
+          <use href="#perf-hole" x="145" y="65"/>
+          <use href="#perf-hole" x="25" y="100"/>
+          <use href="#perf-hole" x="145" y="100"/>
+
+          <!-- Row 3: SCL Node Row (y=130) -->
+          <!-- Global y = 250 + 130 = 380 -->
+          <use href="#perf-hole" x="25" y="130"/>
+          <use href="#perf-hole" x="60" y="130"/>
+          <use href="#perf-hole" x="95" y="130"/>
+          <use href="#perf-hole" x="145" y="130"/>
+
+          <!-- Row 4: SDA Node Row (y=160) -->
+          <!-- Global y = 250 + 160 = 410 -->
+          <use href="#perf-hole" x="25" y="160"/>
+          <use href="#perf-hole" x="60" y="160"/>
+          <use href="#perf-hole" x="110" y="160"/>
+          <use href="#perf-hole" x="145" y="160"/>
+
+          <!-- Soldered Bus Traces on Perfboard -->
+          <!-- Top 3.3V Rail Trace (y=30, x=25 to 110) -->
+          <line x1="25" y1="30" x2="110" y2="30" stroke="#ef4444" stroke-width="4" stroke-linecap="round"/>
+          <text x="122" y="34" fill="#fef2f2" font-size="10" font-weight="bold">3.3V RAIL</text>
+
+          <!-- SCL Horizontal Bus Trace (y=130, x=25 to 95) -->
+          <line x1="25" y1="130" x2="95" y2="130" stroke="#22c55e" stroke-width="3.5" stroke-dasharray="4,2"/>
+          <!-- SDA Horizontal Bus Trace (y=160, x=60 to 145) -->
+          <line x1="60" y1="160" x2="145" y2="160" stroke="#a855f7" stroke-width="3.5" stroke-dasharray="4,2"/>
+
+          <!-- RESISTOR 1: 4.7kΩ Pull-up for SCL (x=60, from y=30 to y=130) -->
+          <line x1="60" y1="30" x2="60" y2="130" stroke="#94a3b8" stroke-width="3"/>
+          <rect x="51" y="55" width="18" height="44" rx="5" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+          <!-- 4.7k Color Bands (Yellow, Violet, Red, Gold) -->
+          <line x1="52" y1="64" x2="68" y2="64" stroke="#eab308" stroke-width="3"/>
+          <line x1="52" y1="72" x2="68" y2="72" stroke="#7e22ce" stroke-width="3"/>
+          <line x1="52" y1="80" x2="68" y2="80" stroke="#dc2626" stroke-width="3"/>
+          <line x1="52" y1="90" x2="68" y2="90" stroke="#ca8a04" stroke-width="2.5"/>
+          <text x="45" y="82" text-anchor="end" fill="#fffbeb" font-size="10" font-weight="bold">R1 (4.7kΩ)</text>
+
+          <!-- RESISTOR 2: 4.7kΩ Pull-up for SDA (x=110, from y=30 to y=160) -->
+          <line x1="110" y1="30" x2="110" y2="160" stroke="#94a3b8" stroke-width="3"/>
+          <rect x="101" y="65" width="18" height="44" rx="5" fill="#fde68a" stroke="#92400e" stroke-width="1.5"/>
+          <!-- 4.7k Color Bands -->
+          <line x1="102" y1="74" x2="118" y2="74" stroke="#eab308" stroke-width="3"/>
+          <line x1="102" y1="82" x2="118" y2="82" stroke="#7e22ce" stroke-width="3"/>
+          <line x1="102" y1="90" x2="118" y2="90" stroke="#dc2626" stroke-width="3"/>
+          <line x1="102" y1="100" x2="118" y2="100" stroke="#ca8a04" stroke-width="2.5"/>
+          <text x="124" y="90" text-anchor="start" fill="#fffbeb" font-size="10" font-weight="bold">R2 (4.7kΩ)</text>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- 2. RIGHT-CENTER: STM32F411CEU6 BLACK PILL                      -->
+        <!-- ============================================================== -->
+        <g id="module-black-pill" transform="translate(860, 170)" filter="url(#pcb-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Module Label Box -->
+          <rect x="-10" y="-58" width="190" height="42" rx="6" fill="#1e293b" stroke="#475569" stroke-width="1.5"/>
+          <text x="85" y="-39" text-anchor="middle" fill="#f8fafc" font-size="12" font-weight="bold">2. STM32F411CEU6</text>
+          <text x="85" y="-23" text-anchor="middle" fill="#38bdf8" font-size="10">Black Pill (Right MCU)</text>
+
+          <!-- Matte Black PCB -->
+          <rect x="0" y="0" width="170" height="360" rx="6" fill="#18181b" stroke="#3f3f46" stroke-width="2.5"/>
+
+          <!-- Top USB Type-C Connector (Matches Black Pill in Photo) -->
+          <rect x="60" y="-8" width="50" height="30" rx="4" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+          <text x="85" y="11" text-anchor="middle" fill="#0f172a" font-size="8" font-weight="bold">USB-C</text>
+
+          <!-- Yellow Header Strips (Left & Right) -->
+          <rect x="6" y="36" width="18" height="295" rx="2" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+          <rect x="146" y="36" width="18" height="295" rx="2" fill="#facc15" stroke="#ca8a04" stroke-width="1"/>
+
+          <!-- Dual Tactile Buttons (BOOT0 & NRST) -->
+          <rect x="52" y="62" width="26" height="22" rx="2" fill="#d4d4d8" stroke="#52525b" stroke-width="1"/>
+          <circle cx="65" cy="73" r="6" fill="#18181b"/>
+          <rect x="92" y="62" width="26" height="22" rx="2" fill="#d4d4d8" stroke="#52525b" stroke-width="1"/>
+          <circle cx="105" cy="73" r="6" fill="#18181b"/>
+          <text x="65" y="96" text-anchor="middle" fill="#a1a1aa" font-size="8">BOOT0</text>
+          <text x="105" y="96" text-anchor="middle" fill="#a1a1aa" font-size="8">NRST</text>
+
+          <!-- Angled STM32F411 UFQFPN48 IC -->
+          <g transform="translate(85, 165) rotate(45)">
+            <rect x="-32" y="-32" width="64" height="64" rx="3" fill="#27272a" stroke="#71717a" stroke-width="1.5"/>
+            <circle cx="-22" cy="-22" r="3" fill="#a1a1aa"/>
+            <text x="0" y="-4" text-anchor="middle" fill="#f8fafc" font-size="9" font-weight="bold">STM32</text>
+            <text x="0" y="9" text-anchor="middle" fill="#38bdf8" font-size="8" font-weight="bold">F411CEU6</text>
+          </g>
+
+          <!-- 25MHz High-Speed Crystal -->
+          <rect x="67" y="235" width="36" height="22" rx="2" fill="#d4d4d8" stroke="#71717a" stroke-width="1"/>
+          <text x="85" y="249" text-anchor="middle" fill="#18181b" font-size="8" font-weight="bold">25MHz</text>
+
+          <!-- Bottom SWD 4-Pin Header (Matches Black Pill Orientation in Photo) -->
+          <!-- Coordinates relative to Black Pill (860, 170):
+               3.3V:  x=55,  y=346 -> Global (915, 516)
+               SWDIO: x=75,  y=346 -> Global (935, 516)
+               SWCLK: x=95,  y=346 -> Global (955, 516)
+               GND:   x=115, y=346 -> Global (975, 516) -->
+          <rect x="43" y="337" width="84" height="18" rx="2" fill="#27272a" stroke="#52525b" stroke-width="1"/>
+          <use href="#pin-pad" x="55" y="346"/>
+          <use href="#pin-pad" x="75" y="346"/>
+          <use href="#pin-pad" x="95" y="346"/>
+          <use href="#pin-pad" x="115" y="346"/>
+          <text x="55" y="331" text-anchor="middle" fill="#fde047" font-size="8" font-weight="bold">3V3</text>
+          <text x="75" y="331" text-anchor="middle" fill="#e4e4e7" font-size="8" font-weight="bold">DIO</text>
+          <text x="95" y="331" text-anchor="middle" fill="#e4e4e7" font-size="8" font-weight="bold">CLK</text>
+          <text x="115" y="331" text-anchor="middle" fill="#e4e4e7" font-size="8" font-weight="bold">GND</text>
+
+          <!-- LEFT HEADER PINS (PB8, PB9, GND) -->
+          <!-- Coordinates relative to Black Pill (860, 170):
+               PB8 (SCL): x=15, y=150 -> Global (875, 320)
+               PB9 (SDA): x=15, y=180 -> Global (875, 350)
+               GND:       x=15, y=315 -> Global (875, 485) -->
+          <use href="#pin-pad" x="15" y="60"/>
+          <use href="#pin-pad" x="15" y="90"/>
+          <use href="#pin-pad" x="15" y="120"/>
+          <use href="#pin-pad" x="15" y="150"/>
+          <use href="#pin-pad" x="15" y="180"/>
+          <use href="#pin-pad" x="15" y="210"/>
+          <use href="#pin-pad" x="15" y="240"/>
+          <use href="#pin-pad" x="15" y="270"/>
+          <use href="#pin-pad" x="15" y="315"/>
+
+          <text x="29" y="154" fill="#86efac" font-size="11" font-weight="bold">B8 (SCL)</text>
+          <text x="29" y="184" fill="#e9d5ff" font-size="11" font-weight="bold">B9 (SDA)</text>
+          <text x="29" y="319" fill="#f8fafc" font-size="11" font-weight="bold">GND</text>
+
+          <!-- RIGHT HEADER PINS (PA2, PA3) -->
+          <!-- Coordinates relative to Black Pill (860, 170):
+               PA2 (TX): x=155, y=150 -> Global (1015, 320)
+               PA3 (RX): x=155, y=180 -> Global (1015, 350) -->
+          <use href="#pin-pad" x="155" y="60"/>
+          <use href="#pin-pad" x="155" y="90"/>
+          <use href="#pin-pad" x="155" y="120"/>
+          <use href="#pin-pad" x="155" y="150"/>
+          <use href="#pin-pad" x="155" y="180"/>
+          <use href="#pin-pad" x="155" y="210"/>
+          <use href="#pin-pad" x="155" y="240"/>
+          <use href="#pin-pad" x="155" y="270"/>
+          <use href="#pin-pad" x="155" y="315"/>
+
+          <text x="141" y="154" text-anchor="end" fill="#fef08a" font-size="11" font-weight="bold">A2 (TX)</text>
+          <text x="141" y="184" text-anchor="end" fill="#fed7aa" font-size="11" font-weight="bold">A3 (RX)</text>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- 1. RIGHT EXTREME: USB TYPE-C ST-LINK V2 DEBUGGER               -->
+        <!-- ============================================================== -->
+        <g id="module-right-stlink" transform="translate(1135, 230)" filter="url(#pcb-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Module Label Box -->
+          <rect x="-10" y="-58" width="160" height="42" rx="6" fill="#ffffff" stroke="#64748b" stroke-width="1.5"/>
+          <text x="70" y="-39" text-anchor="middle" fill="#0f172a" font-size="12" font-weight="bold">1. Right ST-Link V2</text>
+          <text x="70" y="-23" text-anchor="middle" fill="#475569" font-size="10">(USB Type-C + Console)</text>
+
+          <!-- Orange USB-C Cable Stub at Top (Matches Right ST-Link in Photo) -->
+          <path d="M 70 -80 C 70 -120, 140 -120, 180 -95" fill="none" stroke="#f97316" stroke-width="10" stroke-linecap="round"/>
+
+          <!-- Blue/Teal ST-Link PCB -->
+          <rect x="0" y="0" width="140" height="250" rx="6" fill="#0f4c81" stroke="#082f49" stroke-width="2"/>
+
+          <!-- Top USB Type-C Connector -->
+          <rect x="43" y="-12" width="54" height="36" rx="6" fill="#cbd5e1" stroke="#64748b" stroke-width="2"/>
+          <text x="70" y="10" text-anchor="middle" fill="#1e293b" font-size="9" font-weight="bold">USB-C</text>
+
+          <!-- Main Controller IC -->
+          <rect x="42" y="64" width="56" height="56" rx="3" fill="#1e293b" stroke="#475569" stroke-width="1"/>
+          <text x="70" y="90" text-anchor="middle" fill="#e2e8f0" font-size="9" font-weight="bold">STM32</text>
+          <text x="70" y="102" text-anchor="middle" fill="#94a3b8" font-size="8">ST-LINK</text>
+
+          <!-- Side UART Console Header (RX / TX) on Left Edge -->
+          <!-- RX Pin: x=15, y=145 -> Global (1150, 375)
+               TX Pin: x=15, y=170 -> Global (1150, 400) -->
+          <rect x="6" y="132" width="18" height="52" rx="2" fill="#1e293b"/>
+          <use href="#pin-pad" x="15" y="145"/>
+          <use href="#pin-pad" x="15" y="170"/>
+          <text x="30" y="148" fill="#fef08a" font-size="10" font-weight="bold">RX</text>
+          <text x="30" y="173" fill="#fed7aa" font-size="10" font-weight="bold">TX</text>
+
+          <!-- Bottom SWD 2x5 Header (Matches Right ST-Link Orientation in Photo) -->
+          <!-- Coordinates relative to Right ST-Link (1135, 230):
+               3.3V:  x=32,  y=228 -> Global (1167, 458)
+               SWDIO: x=56,  y=228 -> Global (1191, 458)
+               SWCLK: x=80,  y=228 -> Global (1215, 458)
+               GND:   x=104, y=228 -> Global (1239, 458) -->
+          <rect x="12" y="204" width="116" height="38" rx="2" fill="#1e293b" stroke="#0f172a" stroke-width="1.5"/>
+          <use href="#pin-pad" x="32" y="228"/>
+          <use href="#pin-pad" x="56" y="228"/>
+          <use href="#pin-pad" x="80" y="228"/>
+          <use href="#pin-pad" x="104" y="228"/>
+          <text x="32" y="198" text-anchor="middle" fill="#fde047" font-size="8" font-weight="bold">3V3</text>
+          <text x="56" y="198" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">DIO</text>
+          <text x="80" y="198" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">CLK</text>
+          <text x="104" y="198" text-anchor="middle" fill="#f8fafc" font-size="8" font-weight="bold">GND</text>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- COLOR-CODED WIRES (TINKERCAD / FRITZING VECTOR ROUTING)        -->
+        <!-- ============================================================== -->
+
+        <!-- NET GROUP A: I2C BUS (B8 SCL, B9 SDA, AND 3.3V PULL-UP RAIL) -->
+        <g id="net-i2c" class="net-group" filter="url(#wire-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- 1. Red 3.3V Wire: Blue Pill 3.3V (485, 230) -> Perfboard 3.3V Rail (620, 280) -->
+          <path d="M 485 230 L 555 230 L 555 280 L 620 280" fill="none" stroke="#ef4444" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="485" cy="230" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="620" cy="280" r="4.5" fill="#ef4444" stroke="#ffffff" stroke-width="1.5"/>
+
+          <!-- 2. Green I2C1 SCL Wire: Blue Pill PB8 (485, 320) -> Perfboard SCL Node (620, 380) -> Black Pill PB8 (875, 320) -->
+          <path d="M 485 320 L 545 320 L 545 380 L 620 380" fill="none" stroke="#16a34a" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 690 380 L 810 380 L 810 320 L 875 320" fill="none" stroke="#0284c7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="485" cy="320" r="4.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="620" cy="380" r="4.5" fill="#16a34a" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="690" cy="380" r="4.5" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="875" cy="320" r="4.5" fill="#0284c7" stroke="#ffffff" stroke-width="1.5"/>
+
+          <!-- 3. Purple I2C1 SDA Wire: Blue Pill PB9 (485, 350) -> Perfboard SDA Node (655, 410) -> Black Pill PB9 (875, 350) -->
+          <path d="M 485 350 L 525 350 L 525 410 L 655 410" fill="none" stroke="#9333ea" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 740 410 L 830 410 L 830 350 L 875 350" fill="none" stroke="#15803d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="485" cy="350" r="4.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="655" cy="410" r="4.5" fill="#9333ea" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="740" cy="410" r="4.5" fill="#15803d" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="875" cy="350" r="4.5" fill="#15803d" stroke="#ffffff" stroke-width="1.5"/>
+
+          <!-- I2C Callout Badges -->
+          <rect x="505" y="202" width="82" height="20" rx="4" fill="#fef2f2" stroke="#ef4444" stroke-width="1.2"/>
+          <text x="546" y="216" text-anchor="middle" fill="#b91c1c" font-size="10" font-weight="bold">3.3V Pull-Up</text>
+
+          <rect x="742" y="294" width="90" height="20" rx="4" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.2"/>
+          <text x="787" y="308" text-anchor="middle" fill="#15803d" font-size="10" font-weight="bold">I2C1 SCL (B8)</text>
+
+          <rect x="742" y="422" width="90" height="20" rx="4" fill="#faf5ff" stroke="#9333ea" stroke-width="1.2"/>
+          <text x="787" y="436" text-anchor="middle" fill="#7e22ce" font-size="10" font-weight="bold">I2C1 SDA (B9)</text>
+        </g>
+
+
+        <!-- NET GROUP B: COMMON GROUND (BROWN MIDDLE WIRE BETWEEN BLUE & BLACK PILL) -->
+        <g id="net-gnd" class="net-group" filter="url(#wire-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Brown GND Wire: Blue Pill GND (345, 485) -> Black Pill GND (875, 485) -->
+          <path d="M 345 485 L 305 485 L 305 575 L 875 575 L 875 485" fill="none" stroke="#78350f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="345" cy="485" r="5" fill="#78350f" stroke="#ffffff" stroke-width="1.5"/>
+          <circle cx="875" cy="485" r="5" fill="#78350f" stroke="#ffffff" stroke-width="1.5"/>
+
+          <!-- Common GND Badge -->
+          <rect x="530" y="562" width="220" height="26" rx="6" fill="#fef3c7" stroke="#78350f" stroke-width="1.5"/>
+          <text x="640" y="579" text-anchor="middle" fill="#451a03" font-size="11" font-weight="bold">
+            Common GND (Brown Middle Wire)
+          </text>
+        </g>
+
+
+        <!-- NET GROUP C: UART CONSOLE CONNECTIONS (PA2 & PA3 TO BOTH ST-LINKS) -->
+        <g id="net-uart" class="net-group" filter="url(#wire-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- Left Console UART: Blue Pill PA2/PA3 (345, 320 / 350) <-> Left ST-Link RX/TX (205, 395 / 420) -->
+          <!-- PA2 (TX) -> ST-Link RX -->
+          <path d="M 345 320 L 265 320 L 265 395 L 205 395" fill="none" stroke="#eab308" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="345" cy="320" r="4.5" fill="#eab308" stroke="#0f172a" stroke-width="1.2"/>
+          <circle cx="205" cy="395" r="4.5" fill="#eab308" stroke="#0f172a" stroke-width="1.2"/>
+
+          <!-- PA3 (RX) <- ST-Link TX -->
+          <path d="M 345 350 L 285 350 L 285 420 L 205 420" fill="none" stroke="#f97316" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="345" cy="350" r="4.5" fill="#f97316" stroke="#ffffff" stroke-width="1.2"/>
+          <circle cx="205" cy="420" r="4.5" fill="#f97316" stroke="#ffffff" stroke-width="1.2"/>
+
+          <!-- Left UART Label -->
+          <rect x="218" y="272" width="108" height="36" rx="5" fill="#fefce8" stroke="#ca8a04" stroke-width="1.2"/>
+          <text x="272" y="287" text-anchor="middle" fill="#854d0e" font-size="10" font-weight="bold">UART2 Console</text>
+          <text x="272" y="301" text-anchor="middle" fill="#a16207" font-size="9">A2(TX) / A3(RX)</text>
+
+          <!-- Right Console UART: Black Pill PA2/PA3 (1015, 320 / 350) <-> Right ST-Link RX/TX (1150, 375 / 400) -->
+          <!-- PA2 (TX) -> ST-Link RX -->
+          <path d="M 1015 320 L 1085 320 L 1085 375 L 1150 375" fill="none" stroke="#6366f1" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="1015" cy="320" r="4.5" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+          <circle cx="1150" cy="375" r="4.5" fill="#6366f1" stroke="#ffffff" stroke-width="1.2"/>
+
+          <!-- PA3 (RX) <- ST-Link TX -->
+          <path d="M 1015 350 L 1065 350 L 1065 400 L 1150 400" fill="none" stroke="#64748b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="1015" cy="350" r="4.5" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+          <circle cx="1150" cy="400" r="4.5" fill="#64748b" stroke="#ffffff" stroke-width="1.2"/>
+
+          <!-- Right UART Label -->
+          <rect x="1030" y="272" width="104" height="36" rx="5" fill="#eef2ff" stroke="#4f46e5" stroke-width="1.2"/>
+          <text x="1082" y="287" text-anchor="middle" fill="#3730a3" font-size="10" font-weight="bold">UART2 Console</text>
+          <text x="1082" y="301" text-anchor="middle" fill="#4338ca" font-size="9">A2(TX) / A3(RX)</text>
+        </g>
+
+
+        <!-- NET GROUP D: SWD DEBUG RIBBONS (LEFT & RIGHT) -->
+        <g id="net-swd" class="net-group" filter="url(#wire-shadow)" font-family="Arial, Helvetica, sans-serif">
+          <!-- LEFT SWD TOP ARCH RIBBON (Matches Top Ribbon in Bench Photo) -->
+          <!-- GND:   (112, 252) -> (385, 184) -->
+          <path d="M 112 252 L 112 85 L 385 85 L 385 184" fill="none" stroke="#1e293b" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- SWCLK: (136, 252) -> (405, 184) -->
+          <path d="M 136 252 L 136 96 L 405 96 L 405 184" fill="none" stroke="#64748b" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- SWDIO: (160, 252) -> (425, 184) -->
+          <path d="M 160 252 L 160 107 L 425 107 L 425 184" fill="none" stroke="#94a3b8" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- 3.3V:  (184, 252) -> (445, 184) -->
+          <path d="M 184 252 L 184 118 L 445 118 L 445 184" fill="none" stroke="#334155" stroke-width="3.5" stroke-linejoin="round"/>
+
+          <rect x="205" y="72" width="125" height="24" rx="5" fill="#f1f5f9" stroke="#475569" stroke-width="1.2"/>
+          <text x="267" y="88" text-anchor="middle" fill="#0f172a" font-size="10" font-weight="bold">Left SWD Bus (4-Pin)</text>
+
+          <!-- RIGHT SWD BOTTOM LOOP RIBBON (Matches Bottom Ribbon in Bench Photo) -->
+          <!-- 3.3V (Red):     (915, 516) -> (1167, 458) -->
+          <path d="M 915 516 L 915 620 L 1167 620 L 1167 458" fill="none" stroke="#dc2626" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- SWDIO (Orange): (935, 516) -> (1191, 458) -->
+          <path d="M 935 516 L 935 632 L 1191 632 L 1191 458" fill="none" stroke="#f97316" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- SWCLK (Yellow): (955, 516) -> (1215, 458) -->
+          <path d="M 955 516 L 955 644 L 1215 644 L 1215 458" fill="none" stroke="#eab308" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- GND (Brown):    (975, 516) -> (1239, 458) -->
+          <path d="M 975 516 L 975 656 L 1239 656 L 1239 458" fill="none" stroke="#78350f" stroke-width="3.5" stroke-linejoin="round"/>
+
+          <rect x="1000" y="602" width="132" height="24" rx="5" fill="#fff7ed" stroke="#ea580c" stroke-width="1.2"/>
+          <text x="1066" y="618" text-anchor="middle" fill="#9a3412" font-size="10" font-weight="bold">Right SWD Bus (4-Pin)</text>
+        </g>
+
+
+        <!-- ============================================================== -->
+        <!-- BOTTOM LEGEND BAR                                              -->
+        <!-- ============================================================== -->
+        <g transform="translate(80, 695)" font-family="Arial, Helvetica, sans-serif">
+          <rect x="0" y="0" width="1200" height="44" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+          
+          <circle cx="28" cy="22" r="6" fill="#16a34a"/>
+          <text x="42" y="26" fill="#1e293b" font-size="11" font-weight="bold">I2C1 SCL: PB8 ↔ 4.7kΩ ↔ PB8</text>
+
+          <circle cx="255" cy="22" r="6" fill="#9333ea"/>
+          <text x="269" y="26" fill="#1e293b" font-size="11" font-weight="bold">I2C1 SDA: PB9 ↔ 4.7kΩ ↔ PB9</text>
+
+          <circle cx="485" cy="22" r="6" fill="#ef4444"/>
+          <text x="499" y="26" fill="#1e293b" font-size="11" font-weight="bold">Pull-Up VCC: 3.3V Rail</text>
+
+          <circle cx="675" cy="22" r="6" fill="#78350f"/>
+          <text x="689" y="26" fill="#1e293b" font-size="11" font-weight="bold">Common GND: Brown Wire</text>
+
+          <circle cx="885" cy="22" r="6" fill="#eab308"/>
+          <text x="899" y="26" fill="#1e293b" font-size="11" font-weight="bold">UART2 Console: PA2 (TX) / PA3 (RX) ↔ ST-Link V2</text>
+        </g>
+      </svg>

@@ -852,6 +852,12 @@ well-formed request even when the bus transaction fails. Inspect the first
 response-payload byte for the detailed I2C result and use `num_written` or
 `num_read` to determine partial progress.
 
+## Tested Environment
+STM32F411 Black Pill and STM32F103 Blue Pill (As DUT) over an I2C1 bus (PB8/PB9) with external pull-up resistors, while each board connects independently to a USB Type-C ST-Link debugger via SWD (for flashing/debugging) and UART2 (PA2/PA3 for serial console)
+
+![Alt text](./i2c_adaptor_env.jpg)
+![Alt text](./i2c_adaptor_fritzing.svg)
+
 ## Source reference
 
 - USB protocol constants: `protocol/usb_protocol.h`
