@@ -1,3 +1,6 @@
+#### Caution.! This project is done with help of AI
+
+
 # STM32F411 SMBus/I2C USB Adapter
 
 Firmware and host tools for using an STM32F411 Blackpill as a USB-connected
