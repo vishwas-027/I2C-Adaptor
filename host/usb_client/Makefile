@@ -26,3 +26,4 @@ $(TEST_TARGET): tests/adapter_queue_test.c adapter_discovery.c adapter_discovery
 
 clean:
 	rm -f $(TARGET) $(TEST_TARGET)
+	rm -rf $(TARGET).dSYM $(TEST_TARGET).dSYM

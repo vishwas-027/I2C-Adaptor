@@ -175,7 +175,7 @@ clean:
 	@echo "Cleaning..."
 	@rm -rf $(BUILD_DIR)
 	@find . -type d -name "__pycache__" -exec rm -rf {} +
-	@find . -type f -name "*.dSYM" -delete
+	@$(MAKE) -C host/usb_client clean
 	@echo "Done."
 
 

@@ -1,0 +1,7 @@
+/build/
+/host/usb_client/smbus-usb
+/host/usb_client/adapter-queue-test
+*.dSYM/
+*.inspect.ndjson
+__pycache__/
+*.py[cod]
